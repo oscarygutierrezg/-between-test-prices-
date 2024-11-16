@@ -1,4 +1,4 @@
-package unit.com.between.test.application.service;
+package com.between.test.unit.application.service;
 
 
 import com.between.test.application.service.DisambiguatorPriceService;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import util.PriceUtil;
+import com.between.test.util.PriceUtil;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,45 +25,49 @@ class DisambiguatorPriceServiceUnitTest {
 
 	@Test
 	void test_Disambiguate_Should_ReturnPrice_When_Invoked() {
-
-		List<Price> prices = List.of(
+		// Given
+		List<Price> givenPrices = List.of(
 				priceUtil.createPrice(),
 				priceUtil.createPrice(),
 				priceUtil.createPrice());
-		
-		Price price = disambiguatorPriceService.disambiguate(prices);
 
-		Assertions.assertNotNull(price);
-		Assertions.assertNotNull(price.getStartDate());
+		// When
+		Price result = disambiguatorPriceService.disambiguate(givenPrices);
+
+		// Then
+		Assertions.assertNotNull(result);
+		Assertions.assertNotNull(result.getStartDate());
 	}
 
 
 	@Test
 	void test_Disambiguate_Should_ReturnPrice_WithMajorPriority_When_Invoked() {
-		Price priceCurrent = priceUtil.createPrice();
-		Price priceNot = priceUtil.createPrice();
+		// Given
+		Price givenPriceCurrent = priceUtil.createPrice();
+		Price givenPriceNot = priceUtil.createPrice();
+		givenPriceNot.setPriority(0);
+		givenPriceCurrent.setPriority(1);
+		List<Price> givenPrices =List.of(
+				givenPriceNot,
+				givenPriceCurrent);
 
-		priceNot.setPriority(0);
-		priceCurrent.setPriority(1);
+		// When
+		Price result = disambiguatorPriceService.disambiguate(givenPrices);
 
-
-		List<Price> prices =List.of(
-				priceNot,
-				priceCurrent);
-
-		Price price = disambiguatorPriceService.disambiguate(prices);
-
-		Assertions.assertNotNull(price);
-		Assertions.assertNotNull(price.getStartDate());
-		Assertions.assertEquals(price.getAmount(),priceCurrent.getAmount());
+		// Then
+		Assertions.assertNotNull(result);
+		Assertions.assertNotNull(result.getStartDate());
+		Assertions.assertEquals(result.getPrice(),givenPriceCurrent.getPrice());
 	}
 
 	@Test
 	void test_Show_Should_ReturnNoSuchElementExceptionWhen_Invoked() {
+		// When
 		NoSuchElementException exception = Assertions.assertThrows(NoSuchElementException.class, () -> {
 			disambiguatorPriceService.disambiguate(List.of());
 		});
 
+		// Then
 		Assertions.assertNotNull(exception);
 	}
 }

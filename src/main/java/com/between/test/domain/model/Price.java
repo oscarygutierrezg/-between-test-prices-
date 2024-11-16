@@ -11,7 +11,7 @@ public class Price {
 	private LocalDateTime startDate;
 	private LocalDateTime endDate;
 	private String curr;
-	private double amount;
+	private double price;
 
 
 	public long getPriceList() {
@@ -70,11 +70,11 @@ public class Price {
 		this.curr = curr;
 	}
 
-	public double getAmount() {
-		return amount;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }

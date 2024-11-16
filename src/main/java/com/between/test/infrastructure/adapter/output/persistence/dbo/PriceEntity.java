@@ -33,6 +33,6 @@ public class PriceEntity {
 	@Column(name = "CURR")
 	private String curr;
 	@Column(name = "PRICE")
-	private double amount;
+	private double price;
 
 }

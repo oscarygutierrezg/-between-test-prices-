@@ -1,4 +1,4 @@
-package unit.com.between.test.application.service;
+package com.between.test.unit.application.service;
 
 
 import com.between.test.application.ports.input.DisambiguatorPriceUseCase;
@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import util.PriceUtil;
+import com.between.test.util.PriceUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,6 +35,7 @@ class PriceServiceUnitTest {
 
 	@Test
 	void test_Disambiguate_Should_ReturnPrice_When_Invoked() {
+		// Given
 		Mockito.when(priceRepository.findPrices(Mockito.any(LocalDateTime.class), Mockito.any(Price.class))).thenReturn(List.of(
 				priceUtil.createPrice(),
 				priceUtil.createPrice(),
@@ -45,14 +46,16 @@ class PriceServiceUnitTest {
 		givenPrice.setBrandId(faker.number().randomNumber());
 		givenPrice.setProductId(faker.number().randomNumber());
 
-		Price priceDto = priceService.find(
+		// When
+		Price result = priceService.find(
 				LocalDateTime.now(),
 				givenPrice
 		);
 
-		Assertions.assertNotNull(priceDto);
-		Assertions.assertNotNull(priceDto.getStartDate());
+		Assertions.assertNotNull(result);
+		Assertions.assertNotNull(result.getStartDate());
 
+		// Then
 		Mockito.verify(priceRepository, Mockito.times(1)).findPrices(Mockito.any(LocalDateTime.class), Mockito.any(Price.class));
 		Mockito.verify(disambiguatorPriceService, Mockito.times(1)).disambiguate(Mockito.any());
 	}

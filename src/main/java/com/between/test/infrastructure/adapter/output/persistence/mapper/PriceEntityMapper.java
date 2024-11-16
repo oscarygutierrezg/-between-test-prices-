@@ -15,9 +15,7 @@ import org.mapstruct.ReportingPolicy;
 		nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
 		)
 public
-interface PriceMapper {
+interface PriceEntityMapper {
 
 	Price toDomain(PriceEntity userEntity);
-
-	PriceEntity toDbo(Price user);
 }

@@ -2,7 +2,7 @@ package com.between.test.infrastructure.adapter.output.persistence.repository;
 
 import com.between.test.application.ports.output.PriceRepository;
 import com.between.test.domain.model.Price;
-import com.between.test.infrastructure.adapter.output.persistence.mapper.PriceMapper;
+import com.between.test.infrastructure.adapter.output.persistence.mapper.PriceEntityMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import java.util.List;
 public class PriceDboRepository implements PriceRepository {
 
     private final SpringDataSqlPriceRepository springDataSqlPriceRepository;
-    private final PriceMapper priceMapper;
+    private final PriceEntityMapper priceEntityMapper;
 
     @Override
     public List<Price> findPrices(LocalDateTime consultatioDate, Price priceRequest) {
@@ -25,7 +25,7 @@ public class PriceDboRepository implements PriceRepository {
                 priceRequest.getProductId(),
                 priceRequest.getBrandId()
         ).stream()
-                .map(priceMapper::toDomain)
+                .map(priceEntityMapper::toDomain)
                 .toList();
     }
 }

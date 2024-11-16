@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: prices
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  profiles:
+    active: development
+
+logging:
+  level:
+    org.hibernate.SQL: debug

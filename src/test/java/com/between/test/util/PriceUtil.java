@@ -1,4 +1,4 @@
-package util;
+package com.between.test.util;
 
 import com.between.test.domain.model.Price;
 import com.between.test.infrastructure.adapter.input.rest.dto.model.response.PriceDto;
@@ -11,7 +11,7 @@ public class PriceUtil {
 	private Faker faker = new Faker();
 	public PriceDto toDto(Price price) {
 		return  PriceDto.builder()
-				.amount(price.getAmount())
+				.price(price.getPrice())
 				.brandId(price.getBrandId())
 				.productId(price.getProductId())
 				.curr(price.getCurr())
@@ -24,7 +24,7 @@ public class PriceUtil {
 
 	public Price createPrice( ) {
 		Price price = new Price();
-		price.setAmount(faker.number().randomDouble(2,1,999999));
+		price.setPrice(faker.number().randomDouble(2,1,999999));
 		price.setBrandId(faker.number().randomNumber());
 		price.setProductId(faker.number().randomNumber());
 		price.setPriceList(faker.number().randomNumber());
