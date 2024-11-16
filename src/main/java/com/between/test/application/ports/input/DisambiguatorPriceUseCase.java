@@ -1,4 +1,4 @@
-package com.between.test.domain.usecase;
+package com.between.test.application.ports.input;
 
 import com.between.test.domain.model.Price;
 
