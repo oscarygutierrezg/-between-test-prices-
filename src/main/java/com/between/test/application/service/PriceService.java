@@ -7,6 +7,7 @@ import com.between.test.domain.model.Price;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,8 +18,8 @@ public class PriceService implements PriceServiceUseCase {
     private PriceRepository priceRepository;
 
     @Override
-    public Price find(Price priceRequest) {
-        List<Price> prices = priceRepository.findPrices(priceRequest);
+    public Price find(LocalDateTime consultatioDate, Price priceRequest) {
+        List<Price> prices = priceRepository.findPrices(consultatioDate, priceRequest);
         return disambiguatorPriceService.disambiguate(prices);
     }
 }
