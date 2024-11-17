@@ -8,8 +8,8 @@
         <version>3.2.10</version>
         <relativePath/>
     </parent>
-    <groupId>com.between.test</groupId> <!-- remove this line on microservice when is a service -->
-    <version>0.0.1-SNAPSHOT</version> <!-- remove this line on microservice when is a service -->
+    <groupId>com.between.test</groupId> 
+    <version>0.0.1-SNAPSHOT</version> 
     <artifactId>prices</artifactId>
     <name>prices</name>
     <description>Demo project for Spring Boot</description>
