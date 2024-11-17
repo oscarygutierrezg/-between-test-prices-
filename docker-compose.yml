@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  #Backend
+  prices-api:
+    container_name: prices-api
+    image: oscarygutierrezg/prices-api
+    expose:
+      - 8000
+    ports:
+      - 8000:8000

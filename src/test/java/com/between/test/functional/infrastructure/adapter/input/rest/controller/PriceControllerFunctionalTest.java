@@ -33,8 +33,10 @@ class PriceControllerFunctionalTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
+
+	//1. Prueba 1: Realizar una petición a las 10:00 del día 14 para el producto 35455 y la marca 1 (ZARA).
 	@Test
-	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith14T10_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith14T10_Invoked() throws Exception {
 
 		ResultActions res = mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=35455&brandId=1&consultatioDate=2020-06-14T10:00:00")
@@ -57,9 +59,10 @@ class PriceControllerFunctionalTest {
 		Assertions.assertEquals(35.50,priceDto.getPrice());
 
 	}
-
+	
+	//2. Prueba 2: Realizar una petición a las 16:00 del día 14 para el producto 35455 y la marca 1 (ZARA).
 	@Test
-	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith14T16_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith14T16_Invoked() throws Exception {
 
 		ResultActions res =    mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=35455&brandId=1&consultatioDate=2020-06-14T16:00:00")
@@ -84,8 +87,9 @@ class PriceControllerFunctionalTest {
 	}
 
 
+	//Prueba 3: Realizar una petición a las 21:00 del día 14 para el producto 35455 y la marca 1 (ZARA).
 	@Test
-	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith14T21_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith14T21_Invoked() throws Exception {
 
 		ResultActions res =    mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=35455&brandId=1&consultatioDate=2020-06-14T21:00:00")
@@ -109,8 +113,9 @@ class PriceControllerFunctionalTest {
 
 	}
 
+	//Prueba 4: Realizar una petición a las 10:00 del día 15 para el producto 35455 y la marca 1 (ZARA).
 	@Test
-	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith15T10_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith15T10_Invoked() throws Exception {
 
 		ResultActions res = mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=35455&brandId=1&consultatioDate=2020-06-15T10:00:00")
@@ -133,8 +138,9 @@ class PriceControllerFunctionalTest {
 		Assertions.assertEquals(30.50,priceDto.getPrice());
 	}
 
+	//Prueba 5: Realizar una petición a las 21:00 del día 16 para el producto 35455 y la marca 1 (ZARA).
 	@Test
-	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith16T21_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_ShowPrice_When_CallWith16T21_Invoked() throws Exception {
 
 		ResultActions res =    mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=35455&brandId=1&consultatioDate=2020-06-16T21:00:00")
@@ -158,7 +164,7 @@ class PriceControllerFunctionalTest {
 	}
 
 	@Test
-	void test_FinrCurrentPrice_Should_Return404_When_CallWith13T10_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_Return404_When_Invoked() throws Exception {
 
 		mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=35455&brandId=1&consultatioDate=2020-06-13T10:00:00")
@@ -174,7 +180,7 @@ class PriceControllerFunctionalTest {
 	}
 
 	@Test
-	void test_FinrCurrentPrice_Should_Return400_When_CallWith13T10_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_Return400_When_Invoked() throws Exception {
 
 		mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=-35455&brandId=1&consultatioDate=2020-06-13T10:00:00")
@@ -192,7 +198,7 @@ class PriceControllerFunctionalTest {
 
 
 	@Test
-	void test_FinrCurrentPrice_Should_Return500_When_CallWith13T10_Invoked() throws JsonProcessingException, Exception {
+	void test_FinrCurrentPrice_Should_Return500_When_Invoked() throws Exception {
 
 		mockMvc.perform(
 						MockMvcRequestBuilders.get("/v1/price/current?productId=35455777777777777777777777&brandId=1&consultatioDate=2020-06-13T10:00:00")
