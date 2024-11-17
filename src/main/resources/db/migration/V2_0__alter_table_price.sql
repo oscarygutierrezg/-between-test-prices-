@@ -1,0 +1,3 @@
+ALTER TABLE price
+    ADD CONSTRAINT uq_price_unique_fields
+        UNIQUE (PRODUCT_ID, PRIORITY, START_DATE, END_DATE);
